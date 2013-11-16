@@ -5,6 +5,7 @@ import dev.xor.sftd.api.Settings;
 import dev.xor.sftd.api.json.wrappers.deserializers.CurrentEventDeserializer;
 import dev.xor.sftd.api.json.wrappers.deserializers.FriendDeserializer;
 import dev.xor.sftd.api.methods.sftd.ApiMethod;
+import dev.xor.sftd.api.methods.sftd.ApiResult;
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -67,7 +68,7 @@ public class Login extends ApiMethod{
     }
 
     @Override
-    public boolean handleResponse(Game game,String response, Header[] headers) {
+    public ApiResult handleResponse(Game game,String response, Header[] headers) {
         game.getSettings().setCookie(headers[7].getValue());
         /*for(Header header: headers){
             System.out.println(header.getName() +": " + header.getValue());
@@ -77,7 +78,7 @@ public class Login extends ApiMethod{
         game.setFriends(FriendDeserializer.deserializer(resp));
         game.setCurrentEvent(CurrentEventDeserializer.deserializer(resp));
         System.out.println(resp);
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return new ApiResult(true,headers,response);  //To change body of implemented methods use File | Settings | File Templates.
     }
 //{"api_version":"12","platform":"android","facebook_token":"CAACW9GZByJGEBAMG6MG0kBgqDVZB0NL61fMHHyvMelMpd7ZCZAUyWjp8TBnLfixp5YHSsa1a57xqUjdDH8kHeS7hgU8dLmjZAZBpd46YOZBpuA6NFJFzy6lZAgaSm0S7Vc9iaa0H2l8ku2eb6cHi0ciVK5zkMYe5EE9OCI3zkVAy6ML8ANVZCOGFZCqQDL1Ab2bXXN210ZCZBpUvrSZBwlGN7tlQ2ELy9STHiZBO0J9EuGXgZCESAZDZD"}
 }

@@ -26,7 +26,7 @@ public class ApiHandler {
         this.game = game;
     }
 
-    public boolean handle(ApiMethod apiMethod){
+    public ApiResult handle(ApiMethod apiMethod){
         HttpMethod method = apiMethod.createMethod(game);
         HostConfiguration hc = new HostConfiguration();
         Header[] headers = null;

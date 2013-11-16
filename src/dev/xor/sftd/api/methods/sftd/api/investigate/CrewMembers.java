@@ -2,8 +2,10 @@ package dev.xor.sftd.api.methods.sftd.api.investigate;
 
 import dev.xor.sftd.api.Game;
 import dev.xor.sftd.api.methods.sftd.ApiMethod;
+import dev.xor.sftd.api.methods.sftd.ApiResult;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpMethod;
+import org.apache.commons.httpclient.methods.GetMethod;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -19,11 +21,11 @@ import java.net.URL;
  * To change this template use File | Settings | File Templates.
  */
 public class CrewMembers extends ApiMethod {
-    String cookie = "";
-    String crewNumber = ""+2884;
-    public CrewMembers(String cookie, String crewNumber){
-        this.cookie = cookie;
-        this.crewNumber = crewNumber;
+    private String url;
+    private URI uri;
+    public CrewMembers(String crewNumber){
+        url = BASE_URL + "investigate/crew_members/" + crewNumber;
+        uri = urlToUri(url);
     }
 
     /*GET /api/createMethod/crew/2884 HTTP/1.1
@@ -35,53 +37,27 @@ public class CrewMembers extends ApiMethod {
 
     @Override
     public HttpMethod createMethod(Game game) {
-        try {
-            URL url = new URL(getUrl());
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("GET");
-
-            //add request header
-            con.setRequestProperty("Accept", "application/json");
-            con.setRequestProperty("Host","vigilante.divisivemedia.com");
-            con.setRequestProperty("Connection", "Keep-Alive");
-            con.setRequestProperty("Cookie", cookie);
-            con.setRequestProperty("Cookie2", "$Version=1");
-
-
-            int responseCode = con.getResponseCode();
-            System.out.println("\nSending 'GET' request to URL : " + url);
-            System.out.println("Response Code : " + responseCode);
-
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-
-            //print result
-            System.out.println(response.toString());
-
-        } catch (Exception MalformedURLException) {
-
-        }
-       return null;
+        GetMethod method = new GetMethod(url);
+        method.addRequestHeader("Accept", "application/json");
+        method.addRequestHeader("Host", "vigilante.divisivemedia.com");
+        method.addRequestHeader("Connection", "Keep-Alive");
+        method.addRequestHeader(game.getSettings().getCookie());
+        method.addRequestHeader("Cookie2", "$Version=1");
+        return method;
     }
     @Override
     public String getUrl() {
-        return BASE_URL + "/crew_members/" + crewNumber;
+        return url;
     }
 
     @Override
     public URI getURI() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return uri;
     }
 
     @Override
-    public boolean handleResponse(Game game, String response, Header[] headers) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    public ApiResult handleResponse(Game game, String response, Header[] headers) {
+        System.out.println(response);
+        return new ApiResult(true,headers,response);
     }
 }

@@ -2,6 +2,7 @@ package dev.xor.sftd.api.methods.sftd.api.investigate;
 
 import dev.xor.sftd.api.Game;
 import dev.xor.sftd.api.methods.sftd.ApiMethod;
+import dev.xor.sftd.api.methods.sftd.ApiResult;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -18,7 +19,7 @@ import java.net.URL;
 public class Crew extends ApiMethod {
     private String url;
     private URI uri;
-    public Crew(int crewNumber){
+    public Crew(String crewNumber){
         url = BASE_URL + "investigate/crew/" + crewNumber;
         uri = urlToUri(url);
     }
@@ -51,8 +52,8 @@ public class Crew extends ApiMethod {
     }
 
     @Override
-    public boolean handleResponse(Game game, String response, Header[] headers) {
+    public ApiResult handleResponse(Game game, String response, Header[] headers) {
         System.out.println(response);
-        return true;
+        return new ApiResult(true,headers,response);
     }
 }

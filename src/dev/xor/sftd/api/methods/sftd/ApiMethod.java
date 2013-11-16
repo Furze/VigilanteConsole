@@ -13,7 +13,7 @@ public abstract class ApiMethod {
     public abstract String getUrl();
     public abstract URI getURI();
     public abstract HttpMethod createMethod(Game game);
-    public abstract boolean handleResponse(Game game,String response, Header[] headers);
+    public abstract ApiResult handleResponse(Game game,String response, Header[] headers);
     public URI urlToUri(String url){
         URI uri = null;
         try{

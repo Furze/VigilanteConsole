@@ -7,6 +7,7 @@ import dev.xor.sftd.api.json.wrappers.player.encounter.Encounter;
 import dev.xor.sftd.api.methods.sftd.ApiHandler;
 import dev.xor.sftd.api.methods.sftd.api.analytics.Launch;
 import dev.xor.sftd.api.methods.sftd.api.investigate.Crew;
+import dev.xor.sftd.api.methods.sftd.api.investigate.CrewMembers;
 import dev.xor.sftd.api.methods.sftd.api.sessions.Login;
 
 /**
@@ -30,7 +31,8 @@ public class Game {
     }
     public void startGame(){
         apiHandler.handle(new Launch());
-        apiHandler.handle(new Crew(2884));
+        apiHandler.handle(new Crew("2884"));
+        apiHandler.handle(new CrewMembers("2884"));
     }
     public static void main(String... args){
         Game game = new Game();

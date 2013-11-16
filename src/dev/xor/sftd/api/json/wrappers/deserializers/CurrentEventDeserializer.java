@@ -16,6 +16,8 @@ import java.util.ArrayList;
  */
 public class CurrentEventDeserializer {
     public static Encounter deserializer(JSONObject json){
-        return new Encounter(Long.parseLong((String)json.get("resolve")));
+        if(json.has("resolve"))
+            return new Encounter(Long.parseLong((String)json.get("resolve")));
+        return null;
     }
 }

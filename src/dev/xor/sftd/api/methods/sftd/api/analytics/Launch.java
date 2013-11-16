@@ -1,8 +1,8 @@
 package dev.xor.sftd.api.methods.sftd.api.analytics;
 
 import dev.xor.sftd.api.Game;
-import dev.xor.sftd.api.Settings;
 import dev.xor.sftd.api.methods.sftd.ApiMethod;
+import dev.xor.sftd.api.methods.sftd.ApiResult;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -48,9 +48,9 @@ public class Launch extends ApiMethod {
     }
 
     @Override
-    public boolean handleResponse(Game game, String response, Header[] headers) {
+    public ApiResult handleResponse(Game game, String response, Header[] headers) {
         if(response.contains("[]"))
-            return true;
-        return false;
+            return new ApiResult(true,headers,response);
+        return new ApiResult(false,headers,response);
     }
 }
