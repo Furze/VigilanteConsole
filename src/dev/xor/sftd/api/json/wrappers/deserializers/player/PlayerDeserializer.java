@@ -3,6 +3,7 @@ package dev.xor.sftd.api.json.wrappers.deserializers.player;
 
 import dev.xor.sftd.api.json.wrappers.Player;
 import dev.xor.sftd.api.json.wrappers.player.Item;
+import dev.xor.sftd.api.json.wrappers.player.Status;
 import dev.xor.sftd.api.json.wrappers.player.encounter.EncounterType;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,7 +15,7 @@ public class PlayerDeserializer {
     // {
     // "crew":{"id":"2884", "chat_count":2, "leader_id":"21686", "manifesto":"In time man created nuclear and chemical weapons. Thus bringing forward complete world devastation. Time is now. We are the weapons",
     // "name":"W.M.D", "patch":{"pattern":6,"symbol":21,"symbol_color":4,"pattern_color":6,"background_color":3}},
-    // "status_effects":{"bruised":1384600380},
+    //
     // }
     // }
     public static Player deserializer(JSONObject json){
@@ -41,15 +42,11 @@ public class PlayerDeserializer {
         player.setBaseSkill(js.getString("base_skill"));
         player.setEffectiveSpeed(js.getString("effective_speed"));
         player.setBaseSpeed(js.getString("base_speed"));
-
-
         player.setCrewLastChatID(js.getString("crew_last_chat_id"));
         player.setLastAttackedInnocentCount(js.getString("last_attacked_innocent_count"));
         player.setLastAttackedCriminalCount(js.getString("last_attacked_criminal_count"));
-
         player.setEncounterTypes(EncounterTypeDeserializer.deserializer(js.getJSONArray("encounter_types")));
         player.setItemBundle(ItemDeserializer.deserializer(js.getJSONArray("item_bundle")));
-
         player.setLocationID(js.getString("location_id"));
         player.setAvatar(AvatarDeserializer.deserialize(js.getJSONObject("avatar")));
         player.setPushFrequency(js.getString("push_frequency"));
@@ -70,4 +67,17 @@ class EncounterTypeDeserializer{
         }
         return encounterTypes.toArray(new EncounterType[encounterTypes.size()]);
     }
+}
+class StatusDeserializer{
+    //"status_effects":{"bruised":1384600380},
+    public static Status[] deserializer(JSONObject json){
+
+         //bruised
+        //bleeding
+        //killed
+        //todo: impliment yo
+
+
+    }
+
 }
