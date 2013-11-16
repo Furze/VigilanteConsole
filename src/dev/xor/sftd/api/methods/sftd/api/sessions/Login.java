@@ -15,13 +15,6 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Troy
- * Date: 15/11/13
- * Time: 8:22 PM
- * To change this template use File | Settings | File Templates.
- */
 public class Login extends ApiMethod{
    private String facebookToken;
     private JSONObject json;
@@ -80,5 +73,4 @@ public class Login extends ApiMethod{
         System.out.println(resp);
         return new ApiResult(true,headers,response);  //To change body of implemented methods use File | Settings | File Templates.
     }
-//{"api_version":"12","platform":"android","facebook_token":"CAACW9GZByJGEBAMG6MG0kBgqDVZB0NL61fMHHyvMelMpd7ZCZAUyWjp8TBnLfixp5YHSsa1a57xqUjdDH8kHeS7hgU8dLmjZAZBpd46YOZBpuA6NFJFzy6lZAgaSm0S7Vc9iaa0H2l8ku2eb6cHi0ciVK5zkMYe5EE9OCI3zkVAy6ML8ANVZCOGFZCqQDL1Ab2bXXN210ZCZBpUvrSZBwlGN7tlQ2ELy9STHiZBO0J9EuGXgZCESAZDZD"}
 }

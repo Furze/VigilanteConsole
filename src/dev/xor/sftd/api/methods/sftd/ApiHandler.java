@@ -7,13 +7,6 @@ import org.apache.commons.httpclient.protocol.Protocol;
 
 import java.io.IOException;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Troy
- * Date: 16/11/13
- * Time: 6:47 PM
- * To change this template use File | Settings | File Templates.
- */
 public class ApiHandler {
     HttpClient client;
     Protocol easyhttps;

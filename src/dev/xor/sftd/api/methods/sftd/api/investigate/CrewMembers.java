@@ -38,11 +38,7 @@ public class CrewMembers extends ApiMethod {
     @Override
     public HttpMethod createMethod(Game game) {
         GetMethod method = new GetMethod(url);
-        method.addRequestHeader("Accept", "application/json");
-        method.addRequestHeader("Host", "vigilante.divisivemedia.com");
-        method.addRequestHeader("Connection", "Keep-Alive");
-        method.addRequestHeader(game.getSettings().getCookie());
-        method.addRequestHeader("Cookie2", "$Version=1");
+        addGetHeaders(method, game);
         return method;
     }
     @Override

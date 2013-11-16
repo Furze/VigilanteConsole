@@ -8,13 +8,13 @@ package dev.xor.sftd.api.json.wrappers.player.encounter;
  * To change this template use File | Settings | File Templates.
  */
 public class Encounter {
-    private long id;
+    private String id;
 
-    public Encounter(long id) {
+    public Encounter(String id) {
         this.id = id;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 }

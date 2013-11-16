@@ -33,4 +33,12 @@ public abstract class ApiMethod {
         method.addRequestHeader("Cookie2","$Version=1");
         return method;
     }
+    public HttpMethod addGetHeaders(HttpMethod method, Game game){
+        method.addRequestHeader("Accept", "application/json");
+        method.addRequestHeader("Host", "vigilante.divisivemedia.com");
+        method.addRequestHeader("Connection", "Keep-Alive");
+        method.addRequestHeader(game.getSettings().getCookie());
+        method.addRequestHeader("Cookie2", "$Version=1");
+        return method;
+    }
 }

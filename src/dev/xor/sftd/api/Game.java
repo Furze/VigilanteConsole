@@ -6,8 +6,10 @@ import dev.xor.sftd.api.json.wrappers.Player;
 import dev.xor.sftd.api.json.wrappers.player.encounter.Encounter;
 import dev.xor.sftd.api.methods.sftd.ApiHandler;
 import dev.xor.sftd.api.methods.sftd.api.analytics.Launch;
+import dev.xor.sftd.api.methods.sftd.api.encounters.Monitor;
 import dev.xor.sftd.api.methods.sftd.api.investigate.Crew;
 import dev.xor.sftd.api.methods.sftd.api.investigate.CrewMembers;
+import dev.xor.sftd.api.methods.sftd.api.players.Status;
 import dev.xor.sftd.api.methods.sftd.api.sessions.Login;
 
 /**
@@ -31,8 +33,15 @@ public class Game {
     }
     public void startGame(){
         apiHandler.handle(new Launch());
-        apiHandler.handle(new Crew("2884"));
-        apiHandler.handle(new CrewMembers("2884"));
+        //apiHandler.handle(new Crew("2884"));
+        //apiHandler.handle(new CrewMembers("2884"));
+        if(currentEvent != null)
+            apiHandler.handle(new Monitor(currentEvent.getId())); //Imitate real client and find out if you won :P
+
+        //update shit
+        apiHandler.handle(new Status());
+
+
     }
     public static void main(String... args){
         Game game = new Game();
