@@ -10,9 +10,9 @@ package dev.xor.sftd.api.json.wrappers.player;
 public class Rank {
     private String id;
     private String name;
-    private int fromLevel;
+    private String fromLevel;
 
-    public Rank(String id, String name, int fromLevel) {
+    public Rank(String id, String name, String fromLevel) {
         this.id = id;
         this.name = name;
         this.fromLevel = fromLevel;
@@ -26,7 +26,7 @@ public class Rank {
         return name;
     }
 
-    public int getFromLevel() {
+    public String getFromLevel() {
         return fromLevel;
     }
 }

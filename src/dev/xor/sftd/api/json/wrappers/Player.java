@@ -20,7 +20,7 @@ public class Player {
     private String baseStrength;
     private String baseSpeed;
     private String baseSkill;
-    private Vehicle vehicle;
+    private String vehicleId;
     private Item[] itemBundle;
     private EncounterType[] encounterTypes;
     private Status statusEffects;
@@ -73,12 +73,12 @@ public class Player {
         this.avatar = avatar;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
+    public String getVehicleId() {
+        return vehicleId;
     }
 
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public void setVehicleId(String vehicleId) {
+        this.vehicleId = vehicleId;
     }
 
     public Item[] getItemBundle() {

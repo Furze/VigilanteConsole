@@ -14,11 +14,7 @@ public class PlayerDeserializer {
     // {
     // "crew":{"id":"2884", "chat_count":2, "leader_id":"21686", "manifesto":"In time man created nuclear and chemical weapons. Thus bringing forward complete world devastation. Time is now. We are the weapons",
     // "name":"W.M.D", "patch":{"pattern":6,"symbol":21,"symbol_color":4,"pattern_color":6,"background_color":3}},
-    // "primary_item_id":"",
-
-    // "vehicle_id":"vehicle_s1_1",
     // "status_effects":{"bruised":1384600380},
-    // "rank":{"id":"rank6","from_level":"50","name":"Muscle"},
     // }
     // }
     public static Player deserializer(JSONObject json){
@@ -34,9 +30,9 @@ public class PlayerDeserializer {
         player.setXp(js.getString("xp"));
         player.setLastBossLevel(js.getString("last_boss_level"));
         player.setStream(js.getString("stream"));
-
+        player.setRank(RankDeserializer.deserialize(js.getJSONObject("rank")));
         player.setPrimaryItem(js.getString("primary_item_id"));
-
+        player.setVehicleId(js.getString("vehicle_id"));
         player.setLastIncentivisedInviteLevel(js.getString("last_incentivised_invite_level"));
         player.setHadStfdWarning(js.getString("had_sftd_warning"));
         player.setEffectiveStrength(js.getInt("effective_strength"));
@@ -73,12 +69,5 @@ class EncounterTypeDeserializer{
             encounterTypes.add(new EncounterType(json.getString(i)));
         }
         return encounterTypes.toArray(new EncounterType[encounterTypes.size()]);
-    }
-}
-class PrimaryItemDeserializer{
-    public static Item deserializer(JSONObject json){
-        if(json != null)
-            return new Item(json.getInt("x"),json.getInt("y"),json.getString("itemName"));
-        return null;
     }
 }
