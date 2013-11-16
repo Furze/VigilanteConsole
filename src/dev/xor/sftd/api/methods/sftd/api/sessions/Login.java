@@ -4,6 +4,7 @@ import dev.xor.sftd.api.Game;
 import dev.xor.sftd.api.Settings;
 import dev.xor.sftd.api.json.wrappers.deserializers.CurrentEventDeserializer;
 import dev.xor.sftd.api.json.wrappers.deserializers.FriendDeserializer;
+import dev.xor.sftd.api.json.wrappers.deserializers.Message;
 import dev.xor.sftd.api.methods.sftd.ApiMethod;
 import dev.xor.sftd.api.methods.sftd.ApiResult;
 import org.apache.commons.httpclient.*;
@@ -70,6 +71,7 @@ public class Login extends ApiMethod{
         JSONObject resp = new JSONObject(response);
         game.setFriends(FriendDeserializer.deserializer(resp));
         game.setCurrentEvent(CurrentEventDeserializer.deserializer(resp));
+        game.setMessages(Message.deserializer(json));
         System.out.println(resp);
         return new ApiResult(true,headers,response);  //To change body of implemented methods use File | Settings | File Templates.
     }
