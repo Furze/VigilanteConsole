@@ -76,7 +76,7 @@ class StatusDeserializer{
         //bleeding
         //killed
         //todo: impliment yo
-
+       return null;
 
     }
 

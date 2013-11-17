@@ -69,9 +69,10 @@ public class Login extends ApiMethod{
         }
         System.out.println("\n\n"+response);*/
         JSONObject resp = new JSONObject(response);
-        game.setFriends(FriendDeserializer.deserializer(resp));
         game.setCurrentEvent(CurrentEventDeserializer.deserializer(resp));
-        game.setMessages(Message.deserializer(json));
+        game.setFriends(FriendDeserializer.deserializer(resp));
+
+       // game.setMessages(Message.deserializer(json));
         System.out.println(resp);
         return new ApiResult(true,headers,response);  //To change body of implemented methods use File | Settings | File Templates.
     }

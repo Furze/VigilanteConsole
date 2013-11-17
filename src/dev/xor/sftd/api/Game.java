@@ -6,11 +6,14 @@ import dev.xor.sftd.api.json.wrappers.Player;
 import dev.xor.sftd.api.json.wrappers.player.encounter.Encounter;
 import dev.xor.sftd.api.methods.sftd.ApiHandler;
 import dev.xor.sftd.api.methods.sftd.api.analytics.Launch;
+import dev.xor.sftd.api.methods.sftd.api.encounters.Acknowledge;
 import dev.xor.sftd.api.methods.sftd.api.encounters.Monitor;
 import dev.xor.sftd.api.methods.sftd.api.investigate.Crew;
 import dev.xor.sftd.api.methods.sftd.api.investigate.CrewMembers;
+import dev.xor.sftd.api.methods.sftd.api.investigate.InvestigatePlayer;
 import dev.xor.sftd.api.methods.sftd.api.players.Status;
 import dev.xor.sftd.api.methods.sftd.api.sessions.Login;
+import dev.xor.sftd.api.methods.sftd.misc.MathHelpers;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,22 +29,37 @@ public class Game {
     private Messages messages;
     private ApiHandler apiHandler;
     private Encounter currentEvent;
+    private boolean tick;
     public Game(){
         apiHandler = new ApiHandler(this);
         String myFBToken = "CAACW9GZByJGEBAMG6MG0kBgqDVZB0NL61fMHHyvMelMpd7ZCZAUyWjp8TBnLfixp5YHSsa1a57xqUjdDH8kHeS7hgU8dLmjZAZBpd46YOZBpuA6NFJFzy6lZAgaSm0S7Vc9iaa0H2l8ku2eb6cHi0ciVK5zkMYe5EE9OCI3zkVAy6ML8ANVZCOGFZCqQDL1Ab2bXXN210ZCZBpUvrSZBwlGN7tlQ2ELy9STHiZBO0J9EuGXgZCESAZDZD";
         apiHandler.handle(new Login(myFBToken));
+        tick = true;
+    }
+    public void reinitializeGame(){
+        this.tick = false;
+        Game game = new Game();
+        game.gameTick();
     }
     public void startGame(){
         apiHandler.handle(new Launch());
-        //apiHandler.handle(new Crew("2884"));
-        //apiHandler.handle(new CrewMembers("2884"));
-        if(currentEvent != null)
-            apiHandler.handle(new Monitor(currentEvent.getId())); //Imitate real client and find out if you won :P
 
-        //update shit
-        apiHandler.handle(new Status());
-
-
+        gameTick();
+    }
+    public void gameTick(){
+        while(tick){
+            apiHandler.handle(new Status());
+            if(currentEvent != null){
+                apiHandler.handle(new Monitor(currentEvent.getId()));
+               // apiHandler.handle(new Acknowledge(currentEvent.getId()));
+            }
+            apiHandler.handle(new InvestigatePlayer("" + (int) (Math.random() * 58283))).getResponse();
+            try{
+                Thread.sleep(MathHelpers.random(3, 7));
+            } catch (InterruptedException e){
+                System.err.println("interrrupted");
+            }
+        }
     }
     public static void main(String... args){
         Game game = new Game();

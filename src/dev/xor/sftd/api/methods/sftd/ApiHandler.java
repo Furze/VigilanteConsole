@@ -4,6 +4,7 @@ import dev.xor.sftd.api.Connection.EasySSLProtocolSocketFactory;
 import dev.xor.sftd.api.Game;
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.protocol.Protocol;
+import org.json.JSONException;
 
 import java.io.IOException;
 
@@ -42,6 +43,12 @@ public class ApiHandler {
         } finally {
             method.releaseConnection();
         }
-        return apiMethod.handleResponse(game,response,headers);
+        if(response.contains("{\"error\":\"unauthorised\"}"))
+            game.reinitializeGame();
+        try{
+         return apiMethod.handleResponse(game,response,headers);
+        }catch (JSONException e){
+            return new ApiResult(false,headers,response);
+        }
     }
 }
