@@ -63,6 +63,9 @@ public class Login extends ApiMethod{
 
     @Override
     public ApiResult handleResponse(Game game,String response, Header[] headers) {
+        for(Header header: headers){
+            System.out.println(header.getName() +": " + header.getValue());
+        }
         game.getSettings().setCookie(headers[7].getValue());
         /*for(Header header: headers){
             System.out.println(header.getName() +": " + header.getValue());
