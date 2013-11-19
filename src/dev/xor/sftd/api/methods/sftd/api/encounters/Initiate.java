@@ -94,7 +94,7 @@ public class Initiate extends ApiMethod {
 
     @Override
     public ApiResult handleResponse(Game game, String response, Header[] headers) {
-        System.out.println(response);
+       // System.out.println(response);
         if(response.contains("[]"))
             return new ApiResult(true,headers,response);
         return new ApiResult(false,headers,response);

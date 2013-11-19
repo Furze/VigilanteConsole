@@ -20,7 +20,7 @@ public class Acknowledge extends ApiMethod {
     public Acknowledge(String encounterID){
         uri = urlToUri(url);
         json = new JSONObject();
-        System.out.println("acking " + encounterID);
+        //System.out.println("acking " + encounterID);
         json.putOnce("encounter_id", encounterID);
         json.put("stats",(Collection)null);
     }
@@ -52,7 +52,7 @@ public class Acknowledge extends ApiMethod {
 
     @Override
     public ApiResult handleResponse(Game game, String response, Header[] headers) {
-        System.out.println(response);
+       // System.out.println(response);
         if(response.contains("[]"))
             return new ApiResult(true,headers,response);
         return new ApiResult(false,headers,response);

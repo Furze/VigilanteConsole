@@ -20,7 +20,7 @@ public class PlayerAttacking extends Script {
         apiHandler.handle(new Status());
         if(game.getCurrentEvent()!= null){
             apiHandler.handle(new Monitor(game.getCurrentEvent().getId()));
-           //  apiHandler.handle(new Acknowledge(game.getCurrentEvent().getId()));
+             apiHandler.handle(new Acknowledge(game.getCurrentEvent().getId()));
         }
         String player = "" + (int) (Math.random() * 58283);
         try{
@@ -35,6 +35,6 @@ public class PlayerAttacking extends Script {
         } catch (JSONException e){
             System.err.println("Derrps " + e.getMessage());
         }
-        return MathHelpers.random(200, 500);
+        return MathHelpers.random(1000, 3000);
     }
 }

@@ -29,7 +29,7 @@ public class ApiHandler {
         try {
             int statusCode = client.executeMethod(hc, method);
             if (statusCode != HttpStatus.SC_OK) {
-                System.err.println("Method failed: " + method.getStatusLine());
+                System.err.println("Method failed: " + method.getStatusLine()+ "\n" + response) ;
             }
             byte[] responseBody = method.getResponseBody();
             headers = method.getResponseHeaders();
@@ -44,8 +44,11 @@ public class ApiHandler {
             method.releaseConnection();
         }
         if(response.contains("{\"error\":\"unauthorised\"}")){
+           // System.out.println(response);
+            game.reinitializeGame();
+        } else if(response.contains("{session")){
             System.out.println(response);
-            System.exit(0);//game.reinitializeGame();
+            System.exit(0);
         }
         try{
          return apiMethod.handleResponse(game,response,headers);
