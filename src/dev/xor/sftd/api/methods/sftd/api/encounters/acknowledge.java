@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.util.Collection;
 
 public class Acknowledge extends ApiMethod {
     private static String url = BASE_URL + "encounters/acknowledge";
@@ -21,7 +22,7 @@ public class Acknowledge extends ApiMethod {
         json = new JSONObject();
         System.out.println("acking " + encounterID);
         json.putOnce("encounter_id", encounterID);
-        json.put("stats","");
+        json.put("stats",(Collection)null);
     }
     @Override
     public String getUrl() {
@@ -51,6 +52,7 @@ public class Acknowledge extends ApiMethod {
 
     @Override
     public ApiResult handleResponse(Game game, String response, Header[] headers) {
+        System.out.println(response);
         if(response.contains("[]"))
             return new ApiResult(true,headers,response);
         return new ApiResult(false,headers,response);

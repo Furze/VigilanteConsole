@@ -6,6 +6,7 @@ import dev.xor.sftd.api.methods.sftd.ApiResult;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
+import org.json.JSONObject;
 
 import java.net.URI;
 
@@ -49,7 +50,7 @@ public class InvestigatePlayer extends ApiMethod{
 
     @Override
     public ApiResult handleResponse(Game game, String response, Header[] headers) {
-        System.out.println(response);
+        //System.out.println(new JSONObject(response).getString("name"));
         return new ApiResult(true,headers,response);
     }
 }
