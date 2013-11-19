@@ -61,8 +61,8 @@ public class Initiate extends ApiMethod {
         json = new JSONObject();
         System.out.println("attacking " + playerID);
         json.putOnce("target_type", "player");
-        json.putOnce("punishment_id", encounter);
-        json.putOnce("encountertype_id", punishment);
+        json.putOnce("punishment_id", punishment);
+        json.putOnce("encountertype_id", encounter);
         json.putOnce("target_id", playerID);
 
     }

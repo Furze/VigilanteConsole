@@ -43,8 +43,10 @@ public class ApiHandler {
         } finally {
             method.releaseConnection();
         }
-        if(response.contains("{\"error\":\"unauthorised\"}"))
-            game.reinitializeGame();
+        if(response.contains("{\"error\":\"unauthorised\"}")){
+            System.out.println(response);
+            System.exit(0);//game.reinitializeGame();
+        }
         try{
          return apiMethod.handleResponse(game,response,headers);
         }catch (JSONException e){

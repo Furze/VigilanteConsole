@@ -22,7 +22,7 @@ public class Game {
     private Script script;
     public Game(){
         apiHandler = new ApiHandler(this);
-        script = new DOSScript(this);//PlayerAttacking(this);
+        script = new PlayerAttacking(this);
         //String BBToken = "CAACW9GZByJGEBACVbZCSpH8h4BAfPW5dWbZCQ00fWZBJfDtCfvI7BLl1aDZBY2MfSeOZBgrTG2Ld6BlTJ53yNk3fEzcNQrAU73mA4K4cdkEZCV97s53TkeMErzyoI9ZB29cII35wZBfVZCnIx6Rg7TvTvCkVL3VW20CjqUQIAWHZBqPiECaIn56TMD0slZBV3WQJL8Uk9Y1N9HYJjQZDZD";
         //String multi = "CAACW9GZByJGEBAAPXXxmGU7qSm6CJtauBXj1ZBRayjQQ2MD4cLs0SYrPWTLSwe3MutRBjsleJrgaxqcNRyy7nK9OAYfhFsgp0rq01p9yWdzgobVZCiMd2VVtdOCYv8OmizbmTKORWkoihsfxtdYkOxKAHZBw9ZAbgYVgZCT05mJ7IDa3fbRDBW1oJQQeX28zcdJtJxt88UtAZDZD";
        String myFBToken = "CAACW9GZByJGEBAMG6MG0kBgqDVZB0NL61fMHHyvMelMpd7ZCZAUyWjp8TBnLfixp5YHSsa1a57xqUjdDH8kHeS7hgU8dLmjZAZBpd46YOZBpuA6NFJFzy6lZAgaSm0S7Vc9iaa0H2l8ku2eb6cHi0ciVK5zkMYe5EE9OCI3zkVAy6ML8ANVZCOGFZCqQDL1Ab2bXXN210ZCZBpUvrSZBwlGN7tlQ2ELy9STHiZBO0J9EuGXgZCESAZDZD";

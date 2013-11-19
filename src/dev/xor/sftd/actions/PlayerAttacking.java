@@ -20,21 +20,21 @@ public class PlayerAttacking extends Script {
         apiHandler.handle(new Status());
         if(game.getCurrentEvent()!= null){
             apiHandler.handle(new Monitor(game.getCurrentEvent().getId()));
-             apiHandler.handle(new Acknowledge(game.getCurrentEvent().getId()));
+           //  apiHandler.handle(new Acknowledge(game.getCurrentEvent().getId()));
         }
         String player = "" + (int) (Math.random() * 58283);
         try{
             JSONObject json = new JSONObject(apiHandler.handle(new InvestigatePlayer(player)).getResponse());
 
         int level = Integer.parseInt(json.getString("level"));
-        System.out.println(json.getString("name") +" : " + level );
-        if (20 < level && level < 100 ){
-            // apiHandler.handle(new Initiate("35281", "out_of_bounds", "8"));  //mark
-            //apiHandler.handle(new Initiate("35281", "dead_on_arrival", "7"));  //kill
+        //System.out.println(level +": " +json.has("crew"));
+        if (20 < level && level < 100 && !json.has("crew")){
+            apiHandler.handle(new Initiate(player, "out_of_bounds", "8"));  //mark
+            apiHandler.handle(new Initiate(player, "dead_on_arrival", "7"));  //kill
         }
         } catch (JSONException e){
             System.err.println("Derrps " + e.getMessage());
         }
-        return MathHelpers.random(0, 1);
+        return MathHelpers.random(200, 500);
     }
 }
